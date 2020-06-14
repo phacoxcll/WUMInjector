@@ -256,14 +256,12 @@ namespace WUMMInjector
 
         public static void DownloadFFmpeg()
         {
-            string ffmpegVersion = "ffmpeg-4.2.3";
-            if (Environment.Is64BitOperatingSystem)
-                ffmpegVersion += "-win64-static";
-            else
-                ffmpegVersion += "-win32-static";
+            string os = Environment.Is64BitOperatingSystem ? "win64" : "win32";
             string ffmpegZip = Path.Combine(MultimediaInjector.DataPath, "ffmpeg.zip");
+            string ffmpegVersion = "ffmpeg-4.2.3-" + os + "-static";
+            string url = "https://ffmpeg.zeranoe.com/builds/" + os + "/static/" + ffmpegVersion + ".zip";
 
-            Useful.Download("https://ffmpeg.zeranoe.com/builds/win64/static/" + ffmpegVersion + ".zip", ffmpegZip, true);
+            Useful.Download(url, ffmpegZip, true);
 
             ZipFile.ExtractToDirectory(ffmpegZip, MultimediaInjector.DataPath);
 

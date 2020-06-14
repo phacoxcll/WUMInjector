@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
-using System.Windows.Forms.VisualStyles;
 using System.Xml;
 using WUMMInjector.Properties;
 
@@ -11,7 +10,7 @@ namespace WUMMInjector
 {
     public class MultimediaInjector
     {
-        public const string Release = "alpha 1"; //CllVersionReplace "release major"           
+        public const string Release = "alpha 1 rev 2"; //CllVersionReplace "release major rev revision"           
 
         public string MultimediaPath { private set; get; }
         public static string DataPath
