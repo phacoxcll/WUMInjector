@@ -113,7 +113,7 @@ namespace WUMMInjector
             {
                 StreamWriter sw = File.CreateText(getfilePath);
                 sw.WriteLine("@echo off");
-                sw.WriteLine("cd \"" + getfilePath + "\"");
+                sw.WriteLine("cd \"" + unpackPath + "\"");
                 sw.Write("CDecrypt.exe %1 %2 %3");
                 sw.Close();
             }

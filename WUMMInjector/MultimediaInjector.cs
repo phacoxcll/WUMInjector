@@ -493,16 +493,18 @@ namespace WUMMInjector
 
         protected string GetAppFileName(string path)
         {
-            if (File.Exists(Environment.CurrentDirectory + "\\resources\\unpack\\cos.xml"))
-                File.Delete(Environment.CurrentDirectory + "\\resources\\unpack\\cos.xml");
+            string unpackPath = Path.Combine(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "NUSConverter"), "unpack");
 
-            NUSContent.Decrypt(path, "code\\cos.xml", Environment.CurrentDirectory + "\\resources\\unpack\\cos.xml");
+            if (File.Exists(Path.Combine(unpackPath, "cos.xml")))
+                File.Delete(Path.Combine(unpackPath, "cos.xml"));
 
-            if (!File.Exists(Environment.CurrentDirectory + "\\resources\\unpack\\cos.xml"))
+            NUSContent.Decrypt(path, "code\\cos.xml", Path.Combine(unpackPath, "cos.xml"));
+
+            if (!File.Exists(Path.Combine(unpackPath, "cos.xml")))
                 throw new Exception("The NUS content does not contains \"code\\cos.xml\" file.");
 
             XmlDocument xmlCos = new XmlDocument();
-            xmlCos.Load(Environment.CurrentDirectory + "\\resources\\unpack\\cos.xml");
+            xmlCos.Load(Path.Combine(unpackPath, "cos.xml"));
             XmlNode cos_argstr = xmlCos.SelectSingleNode("app/argstr");
             return cos_argstr.InnerText;
         }

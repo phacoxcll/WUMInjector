@@ -220,7 +220,8 @@ namespace WUMMInjector
                 }
                 catch (Exception ex)
                 {
-                    labelBase.Text = "Base invalid!\n" + ex.ToString();
+                    labelBase.Text = "Base invalid!";
+                    richTextBoxLog.AppendText(ex.ToString());
                     panelLoadedBase.BackgroundImage = Properties.Resources.x_mark_16;
                 }
             }
