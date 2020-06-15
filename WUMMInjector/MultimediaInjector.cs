@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -10,7 +10,7 @@ namespace WUMMInjector
 {
     public class MultimediaInjector
     {
-        public const string Release = "alpha 1 rev 2"; //CllVersionReplace "release major rev revision"           
+        public const string Release = "debug 1 rev 3"; //CllVersionReplace "stability major rev revision"           
 
         public string MultimediaPath { private set; get; }
         public static string DataPath
@@ -567,7 +567,14 @@ namespace WUMMInjector
             Cll.JSON.Array filesArray = new Cll.JSON.Array();
             foreach (string file in files)
             {
-                filesArray.AddValue(InjectFile(file, output));
+                try
+                {
+                    filesArray.AddValue(InjectFile(file, output));
+                }
+                catch (Exception e)
+                {
+                    Cll.Log.WriteLine(e.ToString());
+                }
             }
 
             folderJSON.AddMember("folders", foldersArray);
@@ -598,7 +605,8 @@ namespace WUMMInjector
                 extension == ".m4a" ||
                 extension == ".oga" ||
                 extension == ".ogg" ||
-                extension == ".wav")
+                extension == ".wav" ||
+                extension == ".wma")
             {
                 WUMMConverter.EncoderResult result = WUMMConverter.Encoder(inputFile, outputPath);
                 for (int i = 0; i < result.Name.Length; i++)
@@ -633,6 +641,8 @@ namespace WUMMInjector
                 fileJSON.AddMember("height", img.Height);
                 img.Dispose();
             }
+            else
+                throw new Exception("\""+ inputFile + "\" file is not supported.");
 
             return fileJSON;
         }

@@ -17,6 +17,10 @@ namespace WUMMInjector
 
         public WUMMInjectorGUI()
         {
+            Cll.Log.SaveIn("WUMMInjector.log");
+            Cll.Log.WriteLine("WUMM Injector " + MultimediaInjector.Release);
+            Cll.Log.WriteLine(DateTime.Now.ToString());
+
             InitializeComponent();
 
             BootTvImg = new BootImage();
@@ -92,6 +96,21 @@ namespace WUMMInjector
             UpdateMenuIconPictureBox();
             UpdateBootTvPictureBox();
             UpdateBootDrcPictureBox();
+        }
+
+        private void LoadLogFile()
+        {
+            try
+            {
+                richTextBoxLog.Clear();
+                StreamReader sr = File.OpenText(Cll.Log.Filename);
+                richTextBoxLog.AppendText(sr.ReadToEnd());
+                sr.Close();
+            }
+            catch
+            {
+                Cll.Log.WriteLine("Error reading log file.");
+            }
         }
 
         private void WUMMInjectorGUI_Load(object sender, EventArgs e)
@@ -179,11 +198,15 @@ namespace WUMMInjector
                     bootTvImg.Dispose();
                     bootDrcImg.Dispose();
 
+                    Cll.Log.WriteLine("Injection success!");
+                    LoadLogFile();
                     MessageBox.Show("Successfully", "WUMM Injector", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    richTextBoxLog.AppendText(ex.ToString());
+                    Cll.Log.WriteLine(ex.ToString());
+                    Cll.Log.WriteLine("Injection failed.");
+                    LoadLogFile();
                     MessageBox.Show("Failed", "WUMM Injector", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }

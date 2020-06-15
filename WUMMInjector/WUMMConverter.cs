@@ -237,7 +237,7 @@ namespace WUMMInjector
             else
             {
                 ffmpeg.Dispose();
-                throw new Exception("ffmpeg fail.");
+                throw new Exception("ffmpeg fail with arguments \"" + arguments + "\".");
             }
         }
 
@@ -293,7 +293,7 @@ namespace WUMMInjector
             else
             {
                 ffprobe.Dispose();
-                throw new Exception("ffprobe fail.");
+                throw new Exception("ffprobe fail with file \"" + filename + "\".");
             }
         }
     }

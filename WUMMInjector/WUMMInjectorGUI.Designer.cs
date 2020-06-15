@@ -43,20 +43,20 @@
             this.panelImages = new System.Windows.Forms.Panel();
             this.buttonDrcPreview = new System.Windows.Forms.Button();
             this.buttonTvPreview = new System.Windows.Forms.Button();
-            this.buttonIconPreview = new System.Windows.Forms.Button();
             this.buttonIconFrame = new System.Windows.Forms.Button();
             this.buttonTvBackground = new System.Windows.Forms.Button();
-            this.buttonIconBackground = new System.Windows.Forms.Button();
             this.pictureBoxBootTv = new System.Windows.Forms.PictureBox();
             this.buttonDrcBackground = new System.Windows.Forms.Button();
+            this.buttonIconBackground = new System.Windows.Forms.Button();
             this.pictureBoxMenuIcon = new System.Windows.Forms.PictureBox();
+            this.buttonIconPreview = new System.Windows.Forms.Button();
             this.pictureBoxBootDrc = new System.Windows.Forms.PictureBox();
             this.numericUpDownId = new System.Windows.Forms.NumericUpDown();
             this.labelId = new System.Windows.Forms.Label();
             this.labelSize = new System.Windows.Forms.Label();
             this.labelShortName = new System.Windows.Forms.Label();
-            this.richTextBoxLog = new System.Windows.Forms.RichTextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.richTextBoxLog = new System.Windows.Forms.RichTextBox();
             this.panelImages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBootTv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMenuIcon)).BeginInit();
@@ -193,16 +193,6 @@
             this.buttonTvPreview.UseVisualStyleBackColor = true;
             this.buttonTvPreview.Click += new System.EventHandler(this.buttonTvPreview_Click);
             // 
-            // buttonIconPreview
-            // 
-            this.buttonIconPreview.Location = new System.Drawing.Point(4, 3);
-            this.buttonIconPreview.Name = "buttonIconPreview";
-            this.buttonIconPreview.Size = new System.Drawing.Size(117, 27);
-            this.buttonIconPreview.TabIndex = 14;
-            this.buttonIconPreview.Text = "Icon Preview";
-            this.buttonIconPreview.UseVisualStyleBackColor = true;
-            this.buttonIconPreview.Click += new System.EventHandler(this.buttonIconPreview_Click);
-            // 
             // buttonIconFrame
             // 
             this.buttonIconFrame.BackColor = System.Drawing.SystemColors.Control;
@@ -237,23 +227,6 @@
             this.buttonTvBackground.UseVisualStyleBackColor = false;
             this.buttonTvBackground.Click += new System.EventHandler(this.buttonTvBackground_Click);
             // 
-            // buttonIconBackground
-            // 
-            this.buttonIconBackground.BackColor = System.Drawing.SystemColors.Control;
-            this.buttonIconBackground.FlatAppearance.BorderSize = 0;
-            this.buttonIconBackground.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(110)))), ((int)(((byte)(190)))));
-            this.buttonIconBackground.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
-            this.buttonIconBackground.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.buttonIconBackground.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.buttonIconBackground.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.buttonIconBackground.Location = new System.Drawing.Point(240, 16);
-            this.buttonIconBackground.Name = "buttonIconBackground";
-            this.buttonIconBackground.Size = new System.Drawing.Size(117, 27);
-            this.buttonIconBackground.TabIndex = 10;
-            this.buttonIconBackground.Text = "Icon Background";
-            this.buttonIconBackground.UseVisualStyleBackColor = false;
-            this.buttonIconBackground.Click += new System.EventHandler(this.buttonIconBackground_Click);
-            // 
             // pictureBoxBootTv
             // 
             this.pictureBoxBootTv.BackColor = System.Drawing.Color.White;
@@ -283,6 +256,23 @@
             this.buttonDrcBackground.UseVisualStyleBackColor = false;
             this.buttonDrcBackground.Click += new System.EventHandler(this.buttonDrcBackground_Click);
             // 
+            // buttonIconBackground
+            // 
+            this.buttonIconBackground.BackColor = System.Drawing.SystemColors.Control;
+            this.buttonIconBackground.FlatAppearance.BorderSize = 0;
+            this.buttonIconBackground.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(110)))), ((int)(((byte)(190)))));
+            this.buttonIconBackground.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.buttonIconBackground.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.buttonIconBackground.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonIconBackground.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.buttonIconBackground.Location = new System.Drawing.Point(240, 16);
+            this.buttonIconBackground.Name = "buttonIconBackground";
+            this.buttonIconBackground.Size = new System.Drawing.Size(117, 27);
+            this.buttonIconBackground.TabIndex = 10;
+            this.buttonIconBackground.Text = "Icon Background";
+            this.buttonIconBackground.UseVisualStyleBackColor = false;
+            this.buttonIconBackground.Click += new System.EventHandler(this.buttonIconBackground_Click);
+            // 
             // pictureBoxMenuIcon
             // 
             this.pictureBoxMenuIcon.BackColor = System.Drawing.Color.White;
@@ -294,6 +284,16 @@
             this.pictureBoxMenuIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxMenuIcon.TabIndex = 5;
             this.pictureBoxMenuIcon.TabStop = false;
+            // 
+            // buttonIconPreview
+            // 
+            this.buttonIconPreview.Location = new System.Drawing.Point(4, 3);
+            this.buttonIconPreview.Name = "buttonIconPreview";
+            this.buttonIconPreview.Size = new System.Drawing.Size(117, 27);
+            this.buttonIconPreview.TabIndex = 14;
+            this.buttonIconPreview.Text = "Icon Preview";
+            this.buttonIconPreview.UseVisualStyleBackColor = true;
+            this.buttonIconPreview.Click += new System.EventHandler(this.buttonIconPreview_Click);
             // 
             // pictureBoxBootDrc
             // 
@@ -428,8 +428,8 @@
         private System.Windows.Forms.Label labelId;
         private System.Windows.Forms.Label labelSize;
         private System.Windows.Forms.Label labelShortName;
-        private System.Windows.Forms.RichTextBox richTextBoxLog;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.RichTextBox richTextBoxLog;
     }
 }
 
