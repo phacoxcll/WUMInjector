@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace WUMMInjector
@@ -178,6 +179,39 @@ namespace WUMMInjector
             }
 
             return size;
+        }
+
+        public static string GetFolderNamesStruct(string path)
+        {
+            StringBuilder sb = new StringBuilder();
+            string[] folders = Directory.GetDirectories(path);
+            string[] files = Directory.GetFiles(path);
+
+            sb.Append(Path.GetFileName(path));
+            sb.Append("<");
+            int i;
+            if (folders.Length > 0)
+            {
+                for (i = 0; i < folders.Length - 1; i++)
+                {
+                    sb.Append(GetFolderNamesStruct(folders[i]));
+                    sb.Append(":");
+                }
+                sb.Append(GetFolderNamesStruct(folders[i]));
+                if (files.Length > 0)
+                    sb.Append(":");
+            }
+            if (files.Length > 0)
+            {
+                for (i = 0; i < files.Length - 1; i++)
+                {
+                    sb.Append(Path.GetFileName(files[i]));
+                    sb.Append("|");
+                }
+                sb.Append(Path.GetFileName(files[i]));
+            }
+            sb.Append(">");
+            return sb.ToString();
         }
 
         public static string GetFileSizeWithUnit(long bytes)

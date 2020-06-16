@@ -118,7 +118,7 @@ namespace WUMMInjector
             if (!WUMMConverter.CheckFFmpeg())
             {
                 if (MessageBox.Show("FFmpeg not found!\n\n" +
-                    "Do you want to allow WUMM Injector to download FFmpeg from https://ffmpeg.zeranoe.com/builds/? \n\n" +
+                    "Do you want to allow WUMM Injector to download FFmpeg from https://ffmpeg.zeranoe.com/builds/ ?\n\n" +
                     "This will take a few moments depending on your Internet connection.\n\n" +
                     "Please wait.", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                     WUMMConverter.DownloadFFmpeg();
@@ -160,6 +160,7 @@ namespace WUMMInjector
                 Injector.SetMultimedia(folderBrowserDialog.SelectedPath);
                 textBoxShortName.Text = Injector.MultimediaTitle;
                 labelSize.Text = "Size: " + Useful.GetFileSizeWithUnit(Injector.MultimediaSize);
+                labelId.Text = "Title ID: " + Injector.TitleId;
             }
         }
 
@@ -184,8 +185,6 @@ namespace WUMMInjector
             {
                 try
                 {
-                    Injector.Id = (byte)numericUpDownId.Value;
-
                     Bitmap menuIconImg = MenuIconImg.Create();
                     Bitmap bootTvImg = BootTvImg.Create();
                     Bitmap bootDrcImg = BootDrcImg.Create();

@@ -10,7 +10,7 @@ namespace WUMMInjector
 {
     public class MultimediaInjector
     {
-        public const string Release = "debug 1 rev 3"; //CllVersionReplace "stability major rev revision"           
+        public const string Release = "debug 1 rev 4"; //CllVersionReplace "stability major rev revision"           
 
         public string MultimediaPath { private set; get; }
         public static string DataPath
@@ -40,14 +40,14 @@ namespace WUMMInjector
                     return "";
             }
         }
-        public byte Id;
+        private uint Id;
 
         public string TitleId
         {
             get
             {
                 if (BaseIsLoaded)
-                    return "0005000057554D" + Id.ToString("X2");
+                    return "00050002" + Id.ToString("X8");
                 else
                     return "";
             }
@@ -65,6 +65,8 @@ namespace WUMMInjector
         {
             if (Directory.Exists(multimediaPath))
             {
+                byte[] namesStruct = Encoding.UTF8.GetBytes(Useful.GetFolderNamesStruct(multimediaPath));
+                Id = Cll.Security.ComputeCRC32(namesStruct, 0, namesStruct.Length);
                 MultimediaPath = multimediaPath;
                 MultimediaSize = Useful.GetFolderSize(multimediaPath);
                 MultimediaTitle = Path.GetFileName(multimediaPath);

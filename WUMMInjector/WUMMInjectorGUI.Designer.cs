@@ -51,7 +51,6 @@
             this.pictureBoxMenuIcon = new System.Windows.Forms.PictureBox();
             this.buttonIconPreview = new System.Windows.Forms.Button();
             this.pictureBoxBootDrc = new System.Windows.Forms.PictureBox();
-            this.numericUpDownId = new System.Windows.Forms.NumericUpDown();
             this.labelId = new System.Windows.Forms.Label();
             this.labelSize = new System.Windows.Forms.Label();
             this.labelShortName = new System.Windows.Forms.Label();
@@ -61,7 +60,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBootTv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMenuIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBootDrc)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownId)).BeginInit();
             this.SuspendLayout();
             // 
             // panelLoadedBase
@@ -142,7 +140,7 @@
             // 
             this.textBoxShortName.Location = new System.Drawing.Point(57, 42);
             this.textBoxShortName.Name = "textBoxShortName";
-            this.textBoxShortName.Size = new System.Drawing.Size(312, 20);
+            this.textBoxShortName.Size = new System.Drawing.Size(393, 20);
             this.textBoxShortName.TabIndex = 13;
             // 
             // buttonChoose
@@ -307,36 +305,14 @@
             this.pictureBoxBootDrc.TabIndex = 6;
             this.pictureBoxBootDrc.TabStop = false;
             // 
-            // numericUpDownId
-            // 
-            this.numericUpDownId.Location = new System.Drawing.Point(402, 43);
-            this.numericUpDownId.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.numericUpDownId.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDownId.Name = "numericUpDownId";
-            this.numericUpDownId.Size = new System.Drawing.Size(48, 20);
-            this.numericUpDownId.TabIndex = 23;
-            this.numericUpDownId.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
             // labelId
             // 
             this.labelId.AutoSize = true;
-            this.labelId.Location = new System.Drawing.Point(375, 45);
+            this.labelId.Location = new System.Drawing.Point(206, 17);
             this.labelId.Name = "labelId";
-            this.labelId.Size = new System.Drawing.Size(21, 13);
+            this.labelId.Size = new System.Drawing.Size(44, 13);
             this.labelId.TabIndex = 24;
-            this.labelId.Text = "ID:";
+            this.labelId.Text = "Title ID:";
             // 
             // labelSize
             // 
@@ -373,7 +349,6 @@
             this.Controls.Add(this.labelShortName);
             this.Controls.Add(this.labelSize);
             this.Controls.Add(this.labelId);
-            this.Controls.Add(this.numericUpDownId);
             this.Controls.Add(this.panelImages);
             this.Controls.Add(this.panelLoadedBase);
             this.Controls.Add(this.labelBase);
@@ -394,7 +369,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBootTv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMenuIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBootDrc)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownId)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -424,7 +398,6 @@
         private System.Windows.Forms.Button buttonDrcPreview;
         private System.Windows.Forms.Button buttonTvPreview;
         private System.Windows.Forms.Button buttonIconPreview;
-        private System.Windows.Forms.NumericUpDown numericUpDownId;
         private System.Windows.Forms.Label labelId;
         private System.Windows.Forms.Label labelSize;
         private System.Windows.Forms.Label labelShortName;
