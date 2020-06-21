@@ -10,7 +10,7 @@ namespace WUMMInjector
 {
     public class MultimediaInjector
     {
-        public const string Release = "debug 1 rev 4"; //CllVersionReplace "stability major rev revision"           
+        public const string Release = "debug 2"; //CllVersionReplace "stability major rev revision"           
 
         public string MultimediaPath { private set; get; }
         public static string DataPath
@@ -134,17 +134,6 @@ namespace WUMMInjector
         protected void CopyBase(string outPath)
         {
             Useful.DirectoryCopy(BasePath, outPath, true);
-
-            if (File.Exists(Path.Combine(outPath, "code", "jsextension_ext-accounts.rpl")))
-                File.Delete(Path.Combine(outPath, "code", "jsextension_ext-accounts.rpl"));
-            if (File.Exists(Path.Combine(outPath, "code", "jsextension_ext-core.rpl")))
-                File.Delete(Path.Combine(outPath, "code", "jsextension_ext-core.rpl"));
-            if (File.Exists(Path.Combine(outPath, "code", "jsextension_ext-fileio.rpl")))
-                File.Delete(Path.Combine(outPath, "code", "jsextension_ext-fileio.rpl"));
-            if (File.Exists(Path.Combine(outPath, "code", "jsextension_ext-input.rpl")))
-                File.Delete(Path.Combine(outPath, "code", "jsextension_ext-input.rpl"));
-            if (File.Exists(Path.Combine(outPath, "code", "jsextension_ext-profanity-filter.rpl")))
-                File.Delete(Path.Combine(outPath, "code", "jsextension_ext-profanity-filter.rpl"));
 
             if (Directory.Exists(Path.Combine(outPath, "content", "app", ".tern-defs")))
                 Directory.Delete(Path.Combine(outPath, "content", "app", ".tern-defs"), true);
@@ -323,6 +312,29 @@ namespace WUMMInjector
 
             xmlConfig.Load(Path.Combine(outputPath, "config.xml"));
 
+            XmlNodeList nodes = xmlConfig.LastChild.ChildNodes;
+            XmlNodeList options = null;
+            for (int i = 0; i < nodes.Count; i++)
+                if (nodes.Item(i).Name == "nwf:options")
+                {
+                    options = nodes.Item(i).ChildNodes;
+                    break;
+                }
+
+            XmlNode supportedWiiRemotes = null;
+            if (options != null)
+            {
+                for (int i = 0; i < options.Count; i++)
+                    if (options.Item(i).Name == "nwf:supportedWiiRemotes")
+                    {
+                        supportedWiiRemotes = options.Item(i);
+                        break;
+                    }
+
+                if (supportedWiiRemotes != null)
+                    supportedWiiRemotes.InnerText = "1";
+            }
+
             XmlNode widget_content = xmlConfig.LastChild.LastChild;
             XmlAttributeCollection attributes = widget_content.Attributes;
             XmlNode src = attributes.GetNamedItem("src");
@@ -344,11 +356,11 @@ namespace WUMMInjector
             sw = File.CreateText(Path.Combine(outputPath, "style.css"));
             sw.Write(Resources.style);
             sw.Close();
-            sw = File.CreateText(Path.Combine(outputPath, "contentLoaders.js"));
-            sw.Write(Resources.contentLoaders);
+            sw = File.CreateText(Path.Combine(outputPath, "WUMMPlayer.js"));
+            sw.Write(Resources.WUMMPlayer);
             sw.Close();
-            sw = File.CreateText(Path.Combine(outputPath, "contentJSON.js"));
-            sw.Write("var contentJSON = '");
+            sw = File.CreateText(Path.Combine(outputPath, "ContentJSON.js"));
+            sw.Write("var ContentJSON = '");
             sw.Write(json.ToString());
             sw.Write("';");
             sw.Close();
@@ -627,6 +639,7 @@ namespace WUMMInjector
                         fileJSON.AddMember("height", 0);
                     }
                 }
+                Cll.Log.WriteLine("\"" + inputFile + "\" OK!");
             }
             else if (extension == ".jpg" ||
                 extension == ".png" ||
@@ -642,6 +655,7 @@ namespace WUMMInjector
                 fileJSON.AddMember("width", img.Width);
                 fileJSON.AddMember("height", img.Height);
                 img.Dispose();
+                Cll.Log.WriteLine("\"" + inputFile + "\" OK!");
             }
             else
                 throw new Exception("\""+ inputFile + "\" file is not supported.");

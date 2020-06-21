@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using WUMMInjector.Properties;
 
@@ -10,7 +12,7 @@ namespace WUMMInjector
     public partial class WUMMInjectorGUI : Form
     {
         private MultimediaInjector Injector;
-
+        private string ResourcesPath;
         private BootImage BootTvImg;
         private BootImage BootDrcImg;
         private MenuIconImage MenuIconImg;
@@ -29,6 +31,8 @@ namespace WUMMInjector
 
             this.Text = "WUMM Injector " + MultimediaInjector.Release;
 
+            ResourcesPath = Path.Combine(MultimediaInjector.DataPath, "resources");
+            string imagesPath = Path.Combine(ResourcesPath, "images");
             string NUSConverterDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "NUSConverter");
             string packPath = Path.Combine(NUSConverterDataPath, "pack");
             string unpackPath = Path.Combine(NUSConverterDataPath, "unpack");
@@ -49,6 +53,23 @@ namespace WUMMInjector
                 fs = File.Create(Path.Combine(unpackPath, "libeay32.dll"));
                 fs.Write(Resources.libeay32, 0, Resources.libeay32.Length);
                 fs.Close();
+            }
+
+            if (!Directory.Exists(MultimediaInjector.DataPath))
+                Directory.CreateDirectory(MultimediaInjector.DataPath);
+
+            if (!Directory.Exists(ResourcesPath))
+            {
+                Directory.CreateDirectory(ResourcesPath);
+                StreamWriter sw = File.CreateText(Path.Combine(ResourcesPath, "version"));
+                sw.Write(MultimediaInjector.Release);
+                sw.Close();
+            }
+
+            if (!Directory.Exists(imagesPath))
+            {
+                Directory.CreateDirectory(imagesPath);
+                Resources.icon_multimedia.Save(Path.Combine(imagesPath, "icon.png"), ImageFormat.Png);
             }
 
             StringBuilder sb = new StringBuilder();
@@ -93,6 +114,11 @@ namespace WUMMInjector
                 labelBase.Text = "Base invalid!";
             }
 
+            if (File.Exists(Path.Combine(imagesPath, "icon.png")))
+                MenuIconImg.Frame = new Bitmap(Path.Combine(imagesPath, "icon.png"));
+            else
+                MenuIconImg.Frame = null;
+
             UpdateMenuIconPictureBox();
             UpdateBootTvPictureBox();
             UpdateBootDrcPictureBox();
@@ -117,14 +143,28 @@ namespace WUMMInjector
         {
             if (!WUMMConverter.CheckFFmpeg())
             {
-                if (MessageBox.Show("FFmpeg not found!\n\n" +
+                if (MessageBox.Show(
                     "Do you want to allow WUMM Injector to download FFmpeg from https://ffmpeg.zeranoe.com/builds/ ?\n\n" +
-                    "This will take a few moments depending on your Internet connection.\n\n" +
-                    "Please wait.", "Warning!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
-                    WUMMConverter.DownloadFFmpeg();
+                    "This will take a few moments depending on your Internet connection.",
+                    "FFmpeg not found!", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                {
+                    DownloadFFmpeg();
+                }
                 else
                     this.Close();
             }
+        }
+        private async void DownloadFFmpeg()
+        {
+            await DownloadFFmpegAsync();
+        }
+
+        private async Task DownloadFFmpegAsync()
+        {
+            FFmpegWait ffmpegWait = new FFmpegWait();
+            ffmpegWait.Show();
+            await WUMMConverter.DownloadFFmpeg();
+            ffmpegWait.Close();
         }
 
         private void UpdateMenuIconPictureBox()

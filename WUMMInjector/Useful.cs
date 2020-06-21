@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace WUMMInjector
 {
@@ -246,6 +247,11 @@ namespace WUMMInjector
             }
 
             return Math.Round(value, 2).ToString(System.Globalization.CultureInfo.CurrentCulture) + " " + unit;
+        }
+
+        public static Task DownloadAsync(string source, string destination, bool overwrite = false)
+        {
+            return Task.Run(() => Download(source, destination, overwrite));
         }
 
         public static void Download(string source, string destination, bool overwrite = false)

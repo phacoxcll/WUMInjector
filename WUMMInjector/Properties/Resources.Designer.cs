@@ -111,23 +111,12 @@ namespace WUMMInjector.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a var content = JSON.parse(contentJSON);
-        ///
-        ///function loadRoot() {
-        ///	loadFolder(content.foldername, &apos;all&apos;);
-        ///}
-        ///
-        ///function loadFolder(path, contentType) {
-        ///	document.getElementById(&apos;content&apos;).style.marginLeft = &apos;192px&apos;;
-        ///	document.getElementById(&apos;menu&apos;).style.display = &apos;inherit&apos;;
-        ///	
-        ///	if (contentType == &apos;all&apos;) {
-        ///		var menu = &apos;&lt;li id=&quot;menu_all&quot; class=&quot;menu_active&quot;&gt;&lt;a href=&quot;#&quot; onclick=&quot;loadFolder(\&apos;&apos; + path + &apos;\&apos;, \&apos;all\&apos;)&quot;&gt;&lt;img width=&quot;192&quot; height=&quot;192&quot; src=&quot;all.png&quot; /&gt;&lt;/a&gt;&lt;/li&gt;&apos;;
-        ///		menu += &apos;&lt;li id=&quot;menu_video [resto de la cadena truncado]&quot;;.
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static string contentLoaders {
+        internal static System.Drawing.Bitmap icon_multimedia {
             get {
-                return ResourceManager.GetString("contentLoaders", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_multimedia", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -147,14 +136,11 @@ namespace WUMMInjector.Properties {
         ///	&lt;head&gt;
         ///		&lt;meta charset=&quot;utf-8&quot;&gt;
         ///		&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;style.css&quot; /&gt;
-        ///		&lt;script type=&quot;text/javascript&quot; src=&quot;contentJSON.js&quot;&gt;&lt;/script&gt;
         ///	&lt;/head&gt;
-        ///	&lt;body onload=&quot;loadRoot()&quot;&gt;
-        ///		&lt;ul id=&quot;menu&quot;&gt;
-        ///		&lt;/ul&gt;
-        ///		&lt;div id=&quot;content&quot;&gt;
-        ///		&lt;/div&gt;
-        ///		&lt;script type=&quot;text/javascript&quot; src=&quot;contentLoaders.js&quot;&gt;&lt;/script&gt;
+        ///	&lt;body onload=&quot;WUMMPlayer.Init()&quot;&gt;
+        ///		&lt;div id=&quot;content&quot;&gt;&lt;/div&gt;
+        ///		&lt;script type=&quot;text/javascript&quot; src=&quot;ContentJSON.js&quot;&gt;&lt;/script&gt;
+        ///		&lt;script type=&quot;text/javascript&quot; src=&quot;WUMMPlayer.js&quot;&gt;&lt;/script&gt;
         ///	&lt;/body&gt;
         ///&lt;/html&gt;.
         /// </summary>
@@ -175,45 +161,76 @@ namespace WUMMInjector.Properties {
         }
         
         /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Loading {
+            get {
+                object obj = ResourceManager.GetObject("Loading", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap random {
+            get {
+                object obj = ResourceManager.GetObject("random", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap random_blue {
+            get {
+                object obj = ResourceManager.GetObject("random_blue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a body {
         ///	background-color: #181818;
         ///	margin: 0;
         ///	padding: 0;
         ///}
         ///
-        ///#content video {
-        ///	background-color: #181818;
-        ///	width: 100%;
-        ///	height: 100%;
-        ///	margin: 0;
-        ///	padding: 0;
-        ///	position: fixed;
-        ///}
-        ///
-        ///#image_bg {
-        ///	background-color: #181818;
-        ///	/*border: 1px solid blue;*/
-        ///	position: absolute;
-        ///	margin: 0;
-        ///	padding: 0;
-        ///}
-        ///
-        ///#image {
-        ///	/*border: 1px solid red;*/
-        ///	position: absolute;
-        ///	margin: 0;
-        ///	padding: 0;
-        ///}
-        ///
-        ///#audio {
-        ///	width: 99%;
-        ///	height: 35px;
-        ///	margin: 0;
-        ///	padding: 0;
-        ///}
-        ///
         ///#menu {
-        ///	list-style-ty [resto de la cadena truncado]&quot;;.
+        ///	list-style-type: none;
+        ///	margin: 0;
+        ///	padding: 0;
+        ///	width: 192px;
+        ///	background-color: #202020;
+        ///	position: fixed;
+        ///	height: 100%;
+        ///	overflow: auto;
+        ///}
+        ///
+        ///.menu_img {
+        ///	width: 192px;
+        ///	height: 192px;
+        ///}
+        ///
+        ///#menu li a {
+        ///	display: block;
+        ///	color: #000000;
+        ///	text-decoration: none;
+        ///}
+        ///
+        ///#menu li a:hover {
+        ///	background-color: #383838;
+        ///	color: white;
+        ///}
+        ///
+        ///.menu_active {
+        ///	background-color: #2050B0;
+        ///}
+        ///
+        ///#list {
+        ///	font-size: 4em;
+        ///	 [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string style {
             get {
@@ -228,6 +245,37 @@ namespace WUMMInjector.Properties {
             get {
                 object obj = ResourceManager.GetObject("video", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a //WUMM Player beta 2
+        ///
+        ///WUMMPlayer = {};
+        ///
+        ///GamePad = {};
+        ///Wiimote = {};
+        ///Pro = {};
+        ///
+        ///GamePad.Controller = null;
+        ///Wiimote.Controller = null;
+        ///Pro.Controller = null;
+        ///
+        ///WUMMPlayer.Content = JSON.parse(ContentJSON);
+        ///WUMMPlayer.CurrentPath = null;
+        ///WUMMPlayer.CurrentFolder = null;
+        ///WUMMPlayer.FileFilter = null;
+        ///WUMMPlayer.FileList = null;
+        ///WUMMPlayer.CurrentFileIndex = null;
+        ///WUMMPlayer.CurrentItemIndex = null;
+        ///WUMMPlayer.RandomAudio = false;
+        ///WUMMPlayer.ImageMode = &apos;scale&apos;;
+        ///WUMMPlayer.ImageScale = 1.0;
+        /// [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string WUMMPlayer {
+            get {
+                return ResourceManager.GetString("WUMMPlayer", resourceCulture);
             }
         }
         

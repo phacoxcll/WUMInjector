@@ -254,14 +254,14 @@ namespace WUMMInjector
             return true;
         }
 
-        public static void DownloadFFmpeg()
+        public async static Task DownloadFFmpeg()
         {
             string os = Environment.Is64BitOperatingSystem ? "win64" : "win32";
             string ffmpegZip = Path.Combine(MultimediaInjector.DataPath, "ffmpeg.zip");
             string ffmpegVersion = "ffmpeg-4.2.3-" + os + "-static";
             string url = "https://ffmpeg.zeranoe.com/builds/" + os + "/static/" + ffmpegVersion + ".zip";
 
-            Useful.Download(url, ffmpegZip, true);
+            await Useful.DownloadAsync(url, ffmpegZip, true);
 
             ZipFile.ExtractToDirectory(ffmpegZip, MultimediaInjector.DataPath);
 

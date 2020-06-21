@@ -241,6 +241,12 @@
   <ItemGroup>
     <Compile Include="BasicMediaFormatInfo.cs" />
     <Compile Include="BootImage.cs" />
+    <Compile Include="FFmpegWait.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FFmpegWait.Designer.cs">
+      <DependentUpon>FFmpegWait.cs</DependentUpon>
+    </Compile>
     <Compile Include="Log.cs" />
     <Compile Include="MenuIconImage.cs" />
     <Compile Include="MultimediaInjector.cs" />
@@ -259,6 +265,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FFmpegWait.resx">
+      <DependentUpon>FFmpegWait.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WUMMInjectorGUI.resx">
       <DependentUpon>WUMMInjectorGUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -306,13 +315,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
+    <None Include="Resources\icon_multimedia.png" />
+    <None Include="Resources\WUMMPlayer.js" />
+    <None Include="Resources\style.css" />
+    <None Include="Resources\index.html" />
+    <None Include="Resources\random_blue.png" />
+    <None Include="Resources\random.png" />
+    <None Include="Resources\Loading.gif" />
     <None Include="Resources\video.png" />
     <None Include="Resources\image.png" />
     <None Include="Resources\audio.png" />
     <None Include="Resources\all.png" />
-    <None Include="Resources\style.css" />
-    <None Include="Resources\index.html" />
-    <None Include="Resources\contentLoaders.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
