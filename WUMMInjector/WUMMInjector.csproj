@@ -315,10 +315,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
-    <None Include="Resources\icon_multimedia.png" />
     <None Include="Resources\WUMMPlayer.js" />
     <None Include="Resources\style.css" />
     <None Include="Resources\index.html" />
+    <None Include="Resources\icon_multimedia.png" />
     <None Include="Resources\random_blue.png" />
     <None Include="Resources\random.png" />
     <None Include="Resources\Loading.gif" />

@@ -26,6 +26,7 @@ WUMMPlayer.AutoDimmingGamePad = null;
 WUMMPlayer.AutoPowerDown = null;
 var IsWiiU = window.nwf && nwf.system && nwf.system.isWiiU();
 
+
 WUMMPlayer.ControllersInit = function() {
     if (IsWiiU) {
 		if (!GamePad.Controller) {
@@ -71,7 +72,16 @@ WUMMPlayer.Init = function() {
 	WUMMPlayer.SaveAutoDimming();
 	WUMMPlayer.SaveAutoPowerDown();
 	WUMMPlayer.FileFilter = 'all';
-	WUMMPlayer.LoadFolder(WUMMPlayer.Content.foldername);
+	
+	if (WUMMPlayer.Content.folders.length == 0 &&
+		WUMMPlayer.Content.files.length == 1 &&
+		WUMMPlayer.IsVideoFile(WUMMPlayer.Content.files[0])) {
+			WUMMPlayer.UpdateFolder(WUMMPlayer.Content.foldername);
+			WUMMPlayer.FileList = WUMMPlayer.Content.files;
+			WUMMPlayer.LoadVideo(0);
+		}
+	else
+		WUMMPlayer.LoadFolder(WUMMPlayer.Content.foldername);
 }
 
 WUMMPlayer.LoadFolder = function(path) {
@@ -256,7 +266,7 @@ WUMMPlayer.LoadVideo = function(index) {
 	WUMMPlayer.DisableAutoDimming();
 	WUMMPlayer.DisableAutoPowerDown();
 	
-	var content = '<video id="video" onended="WUMMPlayer.NextVideo()" controls autoplay><source src="' + WUMMPlayer.CurrentPath + '/' + WUMMPlayer.FileList[index].filename + WUMMPlayer.FileList[index].ext + '" type="video/mp4">Your browser does not support the video tag.</video><h1 id="name">' + WUMMPlayer.FileList[index].name + '</h1><a id="backVideo" href="#" onclick="WUMMPlayer.LoadFolder(\'' + WUMMPlayer.CurrentPath + '\')">Back</a>';
+	var content = '<video id="video" onmousemove="WUMMPlayer.ShowUIVideo()" onended="WUMMPlayer.NextVideo()" controls autoplay><source src="' + WUMMPlayer.CurrentPath + '/' + WUMMPlayer.FileList[index].filename + WUMMPlayer.FileList[index].ext + '" type="video/mp4">Your browser does not support the video tag.</video><h1 id="name">' + WUMMPlayer.FileList[index].name + '</h1><a id="backVideo" href="#" onclick="WUMMPlayer.LoadFolder(\'' + WUMMPlayer.CurrentPath + '\')">Back</a>';
 	document.getElementById('content').innerHTML = content;
 	WUMMPlayer.FitElements();
 }
@@ -278,11 +288,11 @@ WUMMPlayer.LoadAudio = function(index) {
 	WUMMPlayer.LoadFolder(WUMMPlayer.CurrentPath);
 	WUMMPlayer.Context = 'playing audio';
 	WUMMPlayer.CurrentFileIndex = index;
-	document.getElementById('title').innerHTML = WUMMPlayer.FileList[index].name + '<buttom id="RandomAudio" onclick="WUMMPlayer.RandomAudioUpdate()"></div>';
+	document.getElementById('title').innerHTML = WUMMPlayer.FileList[index].name + '<buttom id="rand_audio" onclick="WUMMPlayer.RandomAudioUpdate()"></div>';
 	if (WUMMPlayer.RandomAudio)
-		document.getElementById('RandomAudio').innerHTML = '<img id="RandomAudioImg" src="random_blue.png">';
+		document.getElementById('rand_audio').innerHTML = '<img id="rand_audio_img" src="random_blue.png">';
 	else 
-		document.getElementById('RandomAudio').innerHTML = '<img id="RandomAudioImg" src="random.png">';
+		document.getElementById('rand_audio').innerHTML = '<img id="rand_audio_img" src="random.png">';
 	var audio = '';
 	if (WUMMPlayer.FileList[index].ext == '.m4a')
 		audio = '<audio id="audio" onended="WUMMPlayer.NextAudio()" controls autoplay><source src="' + WUMMPlayer.CurrentPath + '/' + WUMMPlayer.FileList[index].filename + WUMMPlayer.FileList[index].ext + '" type="audio/aac">Your browser does not support the audio tag.</audio>';
@@ -295,9 +305,9 @@ WUMMPlayer.LoadAudio = function(index) {
 WUMMPlayer.RandomAudioUpdate = function() {
 	WUMMPlayer.RandomAudio = !WUMMPlayer.RandomAudio;
 	if (WUMMPlayer.RandomAudio)
-		document.getElementById('RandomAudio').innerHTML = '<img id="RandomAudioImg" src="random_blue.png">';
+		document.getElementById('rand_audio').innerHTML = '<img id="rand_audio_img" src="random_blue.png">';
 	else 
-		document.getElementById('RandomAudio').innerHTML = '<img id="RandomAudioImg" src="random.png">';
+		document.getElementById('rand_audio').innerHTML = '<img id="rand_audio_img" src="random.png">';
 }
 
 WUMMPlayer.NextAudio = function() {
@@ -323,7 +333,7 @@ WUMMPlayer.LoadImage = function(index) {
 	WUMMPlayer.Context = 'showing image';
 	WUMMPlayer.CurrentFileIndex = index;
 
-	var content = '<div id="image_bg"><img id="image" src="' + WUMMPlayer.CurrentPath + '/' + WUMMPlayer.FileList[index].filename + WUMMPlayer.FileList[index].ext + '" /></div><h1 id="name">' + WUMMPlayer.FileList[index].name + '</h1><a id="backImage" href="#" onclick="WUMMPlayer.LoadFolder(\'' + WUMMPlayer.CurrentPath + '\')">Back</a>';
+	var content = '<div id="image_bg" onmousemove="WUMMPlayer.ShowUIImage()"><img id="image" src="' + WUMMPlayer.CurrentPath + '/' + WUMMPlayer.FileList[index].filename + WUMMPlayer.FileList[index].ext + '" /></div><h1 id="name">' + WUMMPlayer.FileList[index].name + '</h1><a id="backImage" href="#" onclick="WUMMPlayer.LoadFolder(\'' + WUMMPlayer.CurrentPath + '\')">Back</a>';
 	document.getElementById('content').innerHTML = content;
 	
 	WUMMPlayer.FitElements();
@@ -416,6 +426,7 @@ WUMMPlayer.NextImage = function() {
 	WUMMPlayer.LoadImage(i);
 }
 
+
 WUMMPlayer.SaveAutoDimming = function(){
     if (IsWiiU) { 
 		WUMMPlayer.DimmingTV = nwf.display.DisplayManager.getInstance().getTVDisplay().dimmingEnabled;
@@ -465,6 +476,38 @@ WUMMPlayer.DisableAutoPowerDown = function() {
 	}
 };
 
+
+WUMMPlayer.ShowUIVideo = function() {
+	var name = document.getElementById('name');
+	var backVideo = document.getElementById('backVideo');
+	
+	name.style.webkitAnimationName = 'none';
+	setTimeout(function() {
+        name.style.webkitAnimationName = '';
+    }, 10);
+	
+	backVideo.style.webkitAnimationName = 'none';
+	setTimeout(function() {
+        backVideo.style.webkitAnimationName = '';
+    }, 10);
+}
+
+WUMMPlayer.ShowUIImage = function() {
+	var name = document.getElementById('name');
+	var backImage = document.getElementById('backImage');
+	
+	name.style.webkitAnimationName = 'none';
+	setTimeout(function() {
+        name.style.webkitAnimationName = '';
+    }, 10);
+	
+	backImage.style.webkitAnimationName = 'none';
+	setTimeout(function() {
+        backImage.style.webkitAnimationName = '';
+    }, 10);
+}
+
+
 GamePad.Connected = function() {
 	return IsWiiU && GamePad.Controller && GamePad.Controller.connected;
 };
@@ -476,6 +519,7 @@ Wiimote.Connected = function() {
 Pro.Connected = function() {
 	return IsWiiU && Pro.Controller && Pro.Controller.connected;
 };
+
 
 GamePad.ButtonPress = function(event) {
 	if (WUMMPlayer.Context == 'showing image') {
@@ -628,6 +672,7 @@ GamePad.VibrateStop = function() {
     }
 };
 
+
 Wiimote.ButtonPress = function(event) {
 
 };
@@ -728,6 +773,7 @@ Wiimote.VibrateStop = function() {
         Wiimote.Controller.stopVibrate();
     }
 };
+
 
 Pro.ButtonPress = function(event) {
 	if (WUMMPlayer.Context == 'showing image') {

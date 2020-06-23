@@ -10,7 +10,7 @@ namespace WUMMInjector
 {
     public class MultimediaInjector
     {
-        public const string Release = "debug 2"; //CllVersionReplace "stability major rev revision"           
+        public const string Release = "debug 2 rev 1"; //CllVersionReplace "stability major rev revision"           
 
         public string MultimediaPath { private set; get; }
         public static string DataPath

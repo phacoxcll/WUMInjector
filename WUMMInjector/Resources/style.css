@@ -68,7 +68,7 @@ li.item a {
 }
 
 li.item a:hover:not(.active) {
-	background-color: #282828;
+	background-color: #20B050;
 	color: white;
 }
 
@@ -79,7 +79,7 @@ li.item a:hover:not(.active) {
 
 
 #name {
-	text-shadow: 1px 1px 6px #000000;
+	text-shadow: 1px 1px 7px rgba(0, 0, 0, 1);
 	font-size: 4em;
 	margin: 0;
 	padding: 0;
@@ -87,8 +87,13 @@ li.item a:hover:not(.active) {
 	top: 16px;
 	left: 16px;
 	width: 100%;
-	color: #FFFFFF;
+	color: rgba(255, 255, 255, 1);
 	text-decoration: none;
+	-webkit-animation-name: name_fading;
+	-webkit-animation-timing-function: ease-in;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-delay: 2.5s;
+    -webkit-animation-duration: 0.5s;
 }
 
 #content video {
@@ -102,17 +107,22 @@ li.item a:hover:not(.active) {
 
 #backVideo {
 	background-color: rgba(16, 16, 16, 0.75);
-	/*border: 1px solid #000000;*/
 	font-size: 4em;
 	margin: 0;
 	padding: 5px 5px;
 	position: fixed;
 	bottom: 14%;
-	left: 7%;
+	right: 7%;
 	width: 10%;
-	color: #FFFFFF;
+	min-width: 100px;
+	color: rgba(255, 255, 255, 1);
 	text-decoration: none;
 	text-align: center;
+	-webkit-animation-name: back_fading;
+	-webkit-animation-timing-function: ease-in;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-delay: 2.5s;
+    -webkit-animation-duration: 0.5s;
 }
 
 #audio {
@@ -122,25 +132,23 @@ li.item a:hover:not(.active) {
 	padding: 0;
 }
 
-#RandomAudio {
+#rand_audio {
 	position: absolute;
 	top: 0.3em;
 	right: 16px;
-	/*border: 1px solid #FFFFFF;*/
 	margin: 0;
 	padding: 0;
 	color: #FFFFFF;
 	text-decoration: none;
 }
 
-#RandomAudio, #RandomAudioImg, #RandomAudioImg img {
+#rand_audio, #rand_audio_img, #rand_audio_img img {
 	width: 1em;
 	height: 1em;
 }
 
 #image_bg {
 	background-color: #181818;
-	/*border: 1px solid red;*/
 	position: relative;
 	margin: 0;
 	padding: 0;
@@ -149,7 +157,6 @@ li.item a:hover:not(.active) {
 }
 
 #image {
-	/*border: 1px solid red;*/
 	position: absolute;
 	margin: 0;
 	padding: 0;
@@ -157,7 +164,6 @@ li.item a:hover:not(.active) {
 
 #backImage {
 	background-color: rgba(16, 16, 16, 0.75);
-	/*border: 1px solid #000000;*/
 	font-size: 4em;
 	margin: 0;
 	padding: 5px 5px;
@@ -165,7 +171,37 @@ li.item a:hover:not(.active) {
 	bottom: 14%;
 	right: 7%;
 	width: 10%;
-	color: #FFFFFF;
+	min-width: 100px;
+	color: rgba(255, 255, 255, 1);
 	text-decoration: none;
 	text-align: center;
+	-webkit-animation-name: back_fading;
+	-webkit-animation-timing-function: ease-in;
+	-webkit-animation-fill-mode: forwards;
+	-webkit-animation-delay: 2.5s;
+    -webkit-animation-duration: 0.5s;
+}
+
+@-webkit-keyframes name_fading {
+	from {
+		text-shadow: 1px 1px 7px rgba(0, 0, 0, 1);
+		color: rgba(255, 255, 255, 1);
+	}
+	to {
+		text-shadow: 1px 1px 7px rgba(0, 0, 0, 0);
+		color: rgba(255, 255, 255, 0);
+	}
+}
+
+@-webkit-keyframes back_fading {
+	from {
+		background-color: rgba(16, 16, 16, 0.75);
+		color: rgba(255, 255, 255, 1);
+		visibility: visible;
+	}
+	to {
+		background-color: rgba(16, 16, 16, 0);
+		color: rgba(255, 255, 255, 0);
+		visibility: hidden;
+	}
 }
