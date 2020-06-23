@@ -349,6 +349,8 @@ namespace WUMMInjector
             Resources.audio.Save(Path.Combine(outputPath, "audio.png"), ImageFormat.Png);
             Resources.image.Save(Path.Combine(outputPath, "image.png"), ImageFormat.Png);
             Resources.video.Save(Path.Combine(outputPath, "video.png"), ImageFormat.Png);
+            Resources.random.Save(Path.Combine(outputPath, "random.png"), ImageFormat.Png);
+            Resources.random_blue.Save(Path.Combine(outputPath, "random_blue.png"), ImageFormat.Png);
 
             StreamWriter sw = File.CreateText(Path.Combine(outputPath, "index.html"));
             sw.Write(Resources.index);
