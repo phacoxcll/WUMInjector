@@ -149,16 +149,27 @@ namespace WUMInjector
 
         public BasicMediaInfo(Cll.JSON.Object streamInfo)
         {
-            CodecName = ((Cll.JSON.String)streamInfo.GetValue("codec_name")).Value;
-            CodecType = ((Cll.JSON.String)streamInfo.GetValue("codec_type")).Value;
+            if (streamInfo.Contains("codec_name"))
+                CodecName = ((Cll.JSON.String)streamInfo.GetValue("codec_name")).Value;
+            else
+                CodecName = "";
+            if (streamInfo.Contains("codec_type"))
+                CodecType = ((Cll.JSON.String)streamInfo.GetValue("codec_type")).Value;
+            else
+                CodecType = "";
             if (streamInfo.Contains("bit_rate"))
                 Bitrate = Convert.ToInt32(((Cll.JSON.String)streamInfo.GetValue("bit_rate")).Value);
             else
                 Bitrate = 0;
-            string frameRate = ((Cll.JSON.String)streamInfo.GetValue("r_frame_rate")).Value;
-            string[] a = frameRate.Split(new char[] { '/' });
-            if (a[1] != "0")
-                FrameRate = Convert.ToDouble(a[0]) / Convert.ToDouble(a[1]);
+            if (streamInfo.Contains("r_frame_rate"))
+            {
+                string frameRate = ((Cll.JSON.String)streamInfo.GetValue("r_frame_rate")).Value;
+                string[] a = frameRate.Split(new char[] { '/' });
+                if (a[1] != "0")
+                    FrameRate = Convert.ToDouble(a[0]) / Convert.ToDouble(a[1]);
+                else
+                    FrameRate = Double.NaN;
+            }
             else
                 FrameRate = Double.NaN;
             if (streamInfo.Contains("duration"))
