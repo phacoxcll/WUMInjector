@@ -1,0 +1,14 @@
+C:\Users\Alberto\source\repos\WUMInjector\WUMInjector\bin\Debug\WUMInjector.exe.config
+C:\Users\Alberto\source\repos\WUMInjector\WUMInjector\bin\Debug\WUMInjector.exe
+C:\Users\Alberto\source\repos\WUMInjector\WUMInjector\bin\Debug\WUMInjector.pdb
+C:\Users\Alberto\source\repos\WUMInjector\WUMInjector\bin\Debug\JSON.dll
+C:\Users\Alberto\source\repos\WUMInjector\WUMInjector\bin\Debug\JSON.pdb
+C:\Users\Alberto\source\repos\WUMInjector\WUMInjector\obj\Debug\WUMInjector.csprojAssemblyReference.cache
+C:\Users\Alberto\source\repos\WUMInjector\WUMInjector\obj\Debug\WUMInjector.Properties.Resources.resources
+C:\Users\Alberto\source\repos\WUMInjector\WUMInjector\obj\Debug\WUMInjector.csproj.GenerateResource.cache
+C:\Users\Alberto\source\repos\WUMInjector\WUMInjector\obj\Debug\WUMInjector.csproj.CoreCompileInputs.cache
+C:\Users\Alberto\source\repos\WUMInjector\WUMInjector\obj\Debug\WUMInjector.csproj.CopyComplete
+C:\Users\Alberto\source\repos\WUMInjector\WUMInjector\obj\Debug\WUMInjector.exe
+C:\Users\Alberto\source\repos\WUMInjector\WUMInjector\obj\Debug\WUMInjector.pdb
+C:\Users\Alberto\source\repos\WUMInjector\WUMInjector\obj\Debug\WUMInjector.WUMInjectorGUI.resources
+C:\Users\Alberto\source\repos\WUMInjector\WUMInjector\obj\Debug\WUMInjector.FFmpegWait.resources
